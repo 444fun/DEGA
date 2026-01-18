@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$DEGA | A Moeda da Legião</title>
+    <script sr c="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f0a1e; color: white; overflow-x: hidden; }
+        body.xp { font-family: Tahoma, Arial, sans-serif; }
+        .wallpaper{position:fixed;left:0px;top:0px;right:0px;bottom:0px;background-image: url('WhatsApp Image 2026-01-18 at 13.50.46.jpeg'), linear-gradient(#6b3b79 0px, #8b5fbf 192px, #6b3b79 480px);background-size: cover;background-position: center;}
+        .wallpaper::before{content:'';position:absolute;left:0px;top:0px;right:0px;bottom:0px;background:linear-gradient(rgba(6,25,58,0.25), rgba(6,25,58,0.35));backdrop-filter: blur(2px);} 
+        .wallpaper:after{content:'';position:absolute;left:0px;right:0px;bottom:-64px;height:384px;background:radial-gradient(closest-side at 40% 80%, #5fbf3b 0px, #2f8b1f 192px, transparent 230px);opacity:0.95}
+        .desktop{position:relative;min-height:1000px}
+        .win-window{
+            width:100%;
+            max-width:980px;
+            margin:64px auto 80px;
+            border-radius:18px;
+            box-shadow:0 12px 32px rgba(0,0,0,0.18), 0 1.5px 8px rgba(0,0,0,0.08);
+            overflow:hidden;
+            border:1px solid rgba(0,0,0,0.10);
+            background:rgba(255,255,255,0.92);
+            backdrop-filter: blur(2px);
+            padding:32px 24px 24px 24px;
+        }
+        .win-titlebar{
+            height:44px;
+            background:linear-gradient(90deg,#0b57a6 0%,#8b5fbf 100%);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 24px;
+            font-size:18px;
+            font-weight:700;
+            letter-spacing:1px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+        }
+        .win-title{
+            font-weight:900;
+            font-size:1.5em;
+            text-shadow:0 2px 8px rgba(11,87,166,0.12);
+            letter-spacing:1.5px;
+        }
+        .win-controls button{background:linear-gradient(#e6eefc,#bfd7f8);border:1px solid rgba(0,0,0,0.12);border-radius:2px;padding:0 6px;margin-left:6px;cursor:pointer}
+        .win-controls .close{background:linear-gradient(#ff6b6b,#ff3b3b);color:white}
+        .win-body{
+            display:flex;
+            gap:32px;
+            padding:32px 0;
+            flex-wrap:wrap;
+        }
+        .hero-left{flex:0 0 300px;display:flex;align-items:center;justify-content:center}
+        .emblem{width:240px;max-width:240px;height:auto;border-radius:6px;border:4px solid rgba(0,0,0,0.06);box-shadow:0 6px 18px rgba(0,0,0,0.2)}
+        .emblem2{width:200px;height:auto;border-radius:8px;border:4px solid rgba(0,0,0,0.06);box-shadow:0 6px 18px rgba(0,0,0,0.2);margin-left:18px}
+        @media (max-width:600px){
+            .win-window{
+                padding:18px 2vw;
+                border-radius:24px;
+                box-shadow:0 8px 32px rgba(0,0,0,0.18);
+                background:rgba(255,255,255,0.98);
+                min-width:0;
+                width:96vw;
+                max-width:98vw;
+                margin:16px auto;
+            }
+            .win-titlebar{
+                padding:0 12px;
+                font-size:18px;
+                height:52px;
+                border-radius:20px 20px 0 0;
+            }
+            .win-title{
+                font-size:1.2em;
+                text-align:center;
+            }
+            .win-body{
+                flex-direction:column;
+                gap:24px;
+                padding:18px 0;
+                align-items:center;
+            }
+            .win-actions .btn{
+                font-size:1.1em;
+                padding:16px 0;
+                width:90vw;
+                margin:10px auto;
+                display:block;
+                border-radius:12px;
+                box-shadow:0 2px 8px rgba(0,0,0,0.08);
+                font-weight:700;
+                letter-spacing:1px;
+            }
+            .win-actions{
+                width:100%;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                gap:10px;
+            }
+            .hero-left{justify-content:center;}
+            .emblem{max-width:120px;width:80px;}
+            .emblem2{display:none;}
+            .desktop-folders{
+                left:0;top:60px;gap:8px;flex-direction:row;justify-content:center;width:100vw;
+            }
+            .folder{
+                width:64px;
+                font-size:12px;
+                border-radius:12px;
+                margin:0 2vw;
+                box-shadow:0 2px 8px rgba(0,0,0,0.08);
+                background:rgba(255,255,255,0.92);
+                padding:6px 0;
+            }
+            .folder .solana{width:44px;}
+            .folder .label{font-size:10px;}
+            .taskbar{
+                height:56px;
+                font-size:15px;
+                border-radius:20px 20px 0 0;
+                padding:0 4vw;
+                box-shadow:0 -2px 12px rgba(0,0,0,0.08);
+            }
+            .taskbar-icon img{
+                height:40px;
+                width:auto;
+                margin:0 2vw;
+                border-radius:10px;
+                box-shadow:0 2px 8px rgba(0,0,0,0.08);
+            }
+        }
+        }
+        .hero-right{flex:1;display:flex;flex-direction:column;justify-content:center}
+        .win-h1{font-size:48px;margin:0;color:#0b3b6f;font-weight:800}
+        .win-lead{color:#333;margin:10px 0 18px}
+        .win-actions .btn{display:inline-block;padding:10px 16px;border-radius:4px;border:1px solid #9aa8bf;margin-right:12px;text-decoration:none;color:#123;background:#e9eef7}
+        .win-actions .primary{background:#0b57a6;color:white;border-color:#084678}
+        .token-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;padding:10px 12px;border-radius:10px;border:1px solid rgba(11,59,111,0.18);background:rgba(255,255,255,0.9);color:#053159;font-weight:700;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+        .token-bar .label{color:#0b57a6;letter-spacing:0.5px}
+        .token-bar .value{font-family:monospace;color:#333;padding:6px 10px;border-radius:8px;background:#f5f7fb}
+        .token-copy{padding:8px 12px;border-radius:8px;border:1px solid #9aa8bf;background:#e9eef7;color:#0b57a6;font-weight:700;cursor:pointer}
+        .copy-status{font-size:12px;color:#0b57a6;font-weight:700;min-width:64px}
+        .swap-card{position:relative;overflow:hidden;margin-top:16px;padding:16px 14px;border:1px solid rgba(11,59,111,0.16);border-radius:12px;background:rgba(255,255,255,0.94);box-shadow:0 2px 12px rgba(0,0,0,0.08);color:#053159}
+        .swap-card::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(11,59,111,0.75),rgba(107,59,121,0.65)),url('WhatsApp Image 2026-01-18 at 13.42.42.jpeg');background-size:cover;background-position:center;opacity:0.38;z-index:0;filter:saturate(1.1)}
+        .swap-card > *{position:relative;z-index:1}
+        .swap-card h3{margin:0 0 10px;font-size:20px;color:#0b3b6f}
+        .swap-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .swap-pill{padding:8px 12px;border-radius:10px;background:#f5f7fb;font-weight:700;border:1px solid rgba(11,59,111,0.14)}
+        .swap-card input{padding:10px 12px;border-radius:10px;border:1px solid rgba(11,59,111,0.22);min-width:140px;background:#fff;color:#053159;font-weight:700}
+        .swap-card input:focus{outline:2px solid rgba(11,87,166,0.25)}
+        .swap-actions{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+        .swap-toggle{padding:8px 12px;border-radius:8px;border:1px solid #9aa8bf;background:#e9eef7;color:#0b57a6;font-weight:700;cursor:pointer}
+        .swap-btn{padding:10px 14px;border-radius:8px;border:1px solid #0b57a6;background:#0b57a6;color:#fff;font-weight:800;cursor:pointer}
+        .swap-result{margin-top:8px;font-weight:700;color:#0b3b6f}
+        .swap-note{margin-top:6px;font-size:12px;color:#6b5f79}
+        .taskbar{position:fixed;left:0px;right:0px;bottom:0px;height:40px;background:linear-gradient(#c7d7ee,#92b0e6);display:flex;align-items:center;padding:0 10px;border-top:1px solid rgba(0,0,0,0.15)}
+        .start{display:flex;align-items:center;gap:8px;color:#053159}
+        .start-orb{width:32px;height:32px;border-radius:50%;background:linear-gradient(#7ed957,#4fa83a);box-shadow:inset 0 2px 4px rgba(255,255,255,0.3);border:1px solid rgba(0,0,0,0.12)}
+        .start-label{font-weight:700}
+        .tasklist{flex:1;display:flex;align-items:center;padding-left:14px}
+        .task-item{background:rgba(255,255,255,0.85);padding:6px 12px;border-radius:2px;color:#053159;margin-right:6px;border:1px solid rgba(0,0,0,0.06)}
+        .task-item.active{background:linear-gradient(#ffffff,#eaf2ff)}
+        .tray{display:flex;align-items:center;gap:12px;color:#053159}
+        .clock{min-width:64px;text-align:center;font-weight:700}
+        .desktop-folders{
+            position: absolute;
+            left:20px;
+            top:90px;
+            display:flex;
+            flex-direction:column;
+            gap:14px;
+            z-index:60;
+        }
+        .folder{
+            width:80px;
+            cursor:pointer;
+            color:#053159;
+            font-weight:600;
+            text-align:center;
+            font-size:13px;
+        }
+        .folder .icon{width:72px;height:56px;border-radius:8px;background:transparent;border:none;box-shadow:none;display:flex;align-items:center;justify-content:center;font-size:24px}
+                .folder .icon img[alt="Pepvô"],
+                .folder .icon img[alt="WhatsApp"] {
+                    background:rgba(255,255,255,0.92);
+                    border:2px solid #222;
+                    box-shadow:0 4px 16px rgba(0,0,0,0.18);
+                    padding:2px;
+                }
+        .folder .solana{width:60px;height:auto;display:block}
+        .folder .label{
+            margin-top:6px;
+            color:#053159;
+            text-shadow:0 1px 0 rgba(255,255,255,0.6);
+            font-size:13px;
+        }
+        .folder:hover .icon{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,0.18)}
+        .start .tag{margin-left:10px;display:flex;align-items:center}
+        .start .tag img{height:32px;display:block}
+        @media (max-width:640px){.desktop-folders{left:10px;top:70px;gap:10px}.folder{width:68px}.folder .icon{width:58px;height:44px;font-size:20px}.folder .label{font-size:11px}}
+    </style>
+</head>
+<body class="xp">
+
+<div class="desktop">
+    <div class="wallpaper" aria-hidden="true"></div>
+    <div class="desktop-folders" aria-hidden="true">
+        <div class="folder" style="--i:0">
+            <a href="mailto:degasuportlabs@gmail.com" title="Enviar e-mail" style="display:inline-block;">
+                <img src="popo.png" alt="email" class="solana">
+            </a>
+            <div class="label">email</div>
+        </div>
+        <div class="folder" style="--i:1">
+            <img src="WhatsApp Image 2026-01-18 at 15.17.51.png" alt="Documentos" class="solana">
+            <div class="label">cadeia</div>
+        </div>
+        <div class="folder" style="--i:3">
+            <a href="https://x.com/DEGAsuport" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+                <img src="x-icon-white-logo-x-app-editable-transparent-background-premium-social-media-design-for-digital-download-free-png.png" alt="Projetos" class="solana">
+            </a>
+            <div class="label">Projetos</div>
+        </div>
+        <div class="folder" style="--i:4">
+            <img src="assets/images-small.png" alt="Imagens" class="solana" width="60" height="44">
+            <div class="label">bloco meme</div>
+        </div>
+        <div class="folder" style="--i:5">
+            <a href="https://t.me/+r2OU7xO7_phjZDJh" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+                <img src="eyt.jpg" alt="community" style="width:38px;height:38px;border-radius:8px;object-fit:cover;">
+                <div class="label">Comunidade</div>
+            </a>
+        </div>
+        <div class="sc-ibashp ljacTk" style="display:flex;align-items:center;justify-content:center;margin-top:18px;gap:12px;">
+                        <iframe class="Z8YsjS" title="Conteúdo incorporado" name="htmlComp-iframe" width="100%" height="420" allow="fullscreen" data-src src="https://www-pepe-vip.filesusr.com/html/1https://app.uniswap.org/explore/tokens/ethereum/0x6982508145454ce325ddbe47a25d4ec3d2311933?utm_medium=mobile&utm_source=share-tdpf3f2b_d97dc62….html" style="border:none;box-shadow:0 2px 12px rgba(0,0,0,0.12);border-radius:10px;"></iframe>
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var painel = document.querySelector('.sc-ibashp.ljacTk');
+                            if(painel) painel.style.display = 'none';
+                            var folder = document.querySelector('.folder[style*="--i:4"] img');
+                            if(folder) {
+                                folder.style.cursor = 'pointer';
+                                folder.addEventListener('click', function() {
+                                    if(painel) painel.style.display = painel.style.display === 'none' ? 'flex' : 'none';
+                                });
+                            }
+                        });
+                        </script>
+            <div id="comp-lfvhet86" class="RjABt4 comp-lfvhet86">
+                <wix-iframe data-src="">
+                    <div class="ApaTM4">
+                        <iframe class="Z8YsjS" title="Conteúdo incorporado" name="htmlComp-iframe" width="100%" height="100%" allow="fullscreen" data-src="" src="https://www-pepe-vip.filesusr.com/html/1f3f2b_d97dc6210ef477f566aeee9b168830b1.html"></iframe>
+                    </div>
+                </wix-iframe>
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var bloco = document.getElementById('comp-lfvhet86');
+                bloco.style.display = 'none';
+                var folder = document.querySelector('.folder[style*="--i:1"] img');
+                if(folder) {
+                    folder.style.cursor = 'pointer';
+                    folder.addEventListener('click', function() {
+                        bloco.style.display = bloco.style.display === 'none' ? 'block' : 'none';
+                    });
+                }
+            });
+            </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="win-window" role="dialog" aria-label="Janela DEGA">
+        <div class="win-titlebar">
+            <div class="win-title">DEGA - A Moeda da Legião</div>
+            <div class="win-controls">
+                <button class="min" title="Minimizar">▁</button>
+                <button class="max" title="Maximizar">▢</button>
+                <button class="close" title="Fechar">✕</button>
+            </div>
+        </div>
+        <div class="win-body">
+            <div class="hero-left">
+                <picture>
+                    <source media="(max-width:480px)" srcset="emblem-small.jpg">
+                    <img src="emblem.jpg" alt="Emblema" class="emblem">
+                </picture>
+                <img src="depe01.jpg" alt="Emblema secundário" class="emblem2">
+            </div>
+            <div class="hero-right">
+                <h1 class="win-h1">DEGA</h1>
+                <p class="win-lead">"Não somos apenas um exército de peças, somos a liquidez infinita."</p>
+                <div class="win-actions">
+                    <a class="btn primary" href="wallet/index.html">COMPRAR</a>
+                    <a class="btn" href="https://t.me/+r2OU7xO7_phjZDJh" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
+                </div>
+                <div class="token-bar" role="group" aria-label="Endereço oficial do token">
+                    <span class="label">Token:</span>
+                    <span id="token-address" class="value">5nAv2cPhXXbvEvWSKLmsjWtk3VJL3LzEkUzHG43zpump</span>
+                    <button class="token-copy" type="button" onclick="copyTokenAddress()">Copiar</button>
+                    <span id="token-copy-status" class="copy-status" aria-live="polite"></span>
+                    <a class="btn" href="wallet/index.html" style="margin-right:0">Abrir carteira</a>
+                </div>
+                <div class="swap-card" aria-label="Painel de troca SOL para DEGA">
+                    <h3>Painel de troca</h3>
+                    <div class="swap-row">
+                        <span class="swap-pill" id="swap-from-label">SOL</span>
+                        <input id="swap-amount" type="number" step="0.01" value="1" oninput="updateSwapUI()" aria-label="Quantidade a trocar">
+                        <span class="swap-pill">→</span>
+                        <span class="swap-pill" id="swap-to-label">DEGA</span>
+                    </div>
+                    <div class="swap-actions">
+                        <button class="swap-toggle" type="button" onclick="toggleSwapDirection()">Inverter (SOL ⇄ DEGA)</button>
+                        <button class="swap-btn" type="button" onclick="simulateSwap()">Simular troca</button>
+                        <span id="swap-status" class="swap-note" aria-live="polite"></span>
+                    </div>
+                    <div id="swap-result" class="swap-result">1 SOL ≈ 1000 DEGA (simulação)</div>
+                    <div class="swap-note">Taxa fictícia para demonstração: 1 SOL = 1000 DEGA. Ajuste no código quando a pool estiver ativa.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="taskbar">
+        <div class="start">
+            <div class="start-orb" title="Iniciar"></div>
+            <span class="start-label">Iniciar</span>
+        </div>
+        <div class="taskbar-icon" style="display:flex;align-items:center;gap:8px;margin-left:16px;">
+            <a href="https://t.me/+r2OU7xO7_phjZDJh" target="_blank" rel="noopener noreferrer">
+                <img src="poio.png" alt="poio" style="height:32px;width:auto;display:block;">
+            </a>
+            <a href="https://x.com/DEGAsuport" target="_blank" rel="noopener noreferrer">
+                <img src="poio 2.png" alt="poio 2" style="height:32px;width:auto;display:block;">
+            </a>
+        </div>
+        <div class="tasklist" aria-hidden="true"></div>
+        <div class="tray">
+            <div class="tray-icons"></div>
+            <div id="clock" class="clock"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const TOKEN_ADDRESS='5nAv2cPhXXbvEvWSKLmsjWtk3VJL3LzEkUzHG43zpump';
+
+    function updateClock(){
+        const el=document.getElementById('clock');
+        const d=new Date();
+        const h=d.getHours().toString().padStart(2,'0');
+        const m=d.getMinutes().toString().padStart(2,'0');
+        el.textContent=h+':'+m;
+    }
+    setInterval(updateClock,1000);
+    updateClock();
+
+    function copyTokenAddress(){
+        const text=TOKEN_ADDRESS;
+        const status=document.getElementById('token-copy-status');
+        const done=(msg)=>{if(status){status.textContent=msg;setTimeout(()=>status.textContent='',2500);}};
+        if(!navigator.clipboard){
+            const tmp=document.createElement('textarea');
+            tmp.value=text;
+            document.body.appendChild(tmp);
+            tmp.select();
+            document.execCommand('copy');
+            document.body.removeChild(tmp);
+            done('Copiado!');
+            return;
+        }
+        navigator.clipboard.writeText(text).then(()=>done('Copiado!')).catch(()=>done('Falhou'));
+    }
+
+    const SOL_TO_DEGA_RATE=1000;
+    let swapDirection='SOL_TO_DEGA';
+
+    function updateSwapUI(){
+        const amountEl=document.getElementById('swap-amount');
+        const fromEl=document.getElementById('swap-from-label');
+        const toEl=document.getElementById('swap-to-label');
+        const resultEl=document.getElementById('swap-result');
+        const amount=parseFloat(amountEl?.value)||0;
+        const output=swapDirection==='SOL_TO_DEGA'?amount*SOL_TO_DEGA_RATE:amount/SOL_TO_DEGA_RATE;
+        if(resultEl&&fromEl&&toEl){
+            resultEl.textContent=`${amount} ${fromEl.textContent} ≈ ${output.toFixed(4)} ${toEl.textContent}`;
+        }
+    }
+
+    function toggleSwapDirection(){
+        const fromEl=document.getElementById('swap-from-label');
+        const toEl=document.getElementById('swap-to-label');
+        swapDirection=swapDirection==='SOL_TO_DEGA'?'DEGA_TO_SOL':'SOL_TO_DEGA';
+        if(fromEl&&toEl){
+            if(swapDirection==='SOL_TO_DEGA'){
+                fromEl.textContent='SOL';
+                toEl.textContent='DEGA';
+            }else{
+                fromEl.textContent='DEGA';
+                toEl.textContent='SOL';
+            }
+        }
+        updateSwapUI();
+    }
+
+    function simulateSwap(){
+        const status=document.getElementById('swap-status');
+        updateSwapUI();
+        if(status){
+            status.textContent='Simulação apenas — integre a pool real quando pronta.';
+            setTimeout(()=>status.textContent='',2600);
+        }
+    }
+
+    updateSwapUI();
+</script>
+</body>
+</html>
