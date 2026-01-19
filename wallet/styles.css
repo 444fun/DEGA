@@ -1,0 +1,18 @@
+*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+body{margin:0;background:#0f0a1e;color:#fff}
+.container{display:flex;min-height:100vh}
+.panel{flex:0 0 48%;background:linear-gradient(180deg,#3b1f5a,#6b3b79);display:flex;align-items:center;justify-content:center;padding:24px}
+.panel-art{max-width:100%;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.wallet{flex:1;padding:48px;max-width:640px}
+h1{margin:0 0 8px;font-size:28px;color:#ffd86b}
+.lead{margin:0 0 18px;color:#d0d7ff}
+.status{margin:12px 0;padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:6px}
+.btn{padding:10px 14px;border-radius:8px;border:0;background:#e9eef7;color:#072b46;cursor:pointer}
+.btn.primary{background:#0b57a6;color:#fff}
+.account{margin-top:18px;background:rgba(255,255,255,0.03);padding:12px;border-radius:8px}
+.buy-box{margin-top:18px;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+.buy-box input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.08);margin-top:6px;background:transparent;color:#fff}
+.actions{margin-top:10px}
+.note{font-size:12px;color:#b8c1e6;margin-top:8px}
+code{background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:4px;font-size:13px}
+@media(max-width:900px){.panel{display:none}.wallet{max-width:100%;padding:28px}}
