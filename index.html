@@ -156,6 +156,8 @@
         .swap-btn{padding:10px 14px;border-radius:8px;border:1px solid #0b57a6;background:#0b57a6;color:#fff;font-weight:800;cursor:pointer}
         .swap-result{margin-top:8px;font-weight:700;color:#0b3b6f}
         .swap-note{margin-top:6px;font-size:12px;color:#6b5f79}
+        .chart-card{margin-top:16px;padding:12px;border:1px solid rgba(11,59,111,0.16);border-radius:12px;background:rgba(255,255,255,0.94);box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+        .chart-embed{width:100%;min-height:420px;border:none;border-radius:8px;overflow:hidden}
         .taskbar{position:fixed;left:0px;right:0px;bottom:0px;height:40px;background:linear-gradient(#c7d7ee,#92b0e6);display:flex;align-items:center;padding:0 10px;border-top:1px solid rgba(0,0,0,0.15)}
         .start{display:flex;align-items:center;gap:8px;color:#053159}
         .start-orb{width:32px;height:32px;border-radius:50%;background:linear-gradient(#7ed957,#4fa83a);box-shadow:inset 0 2px 4px rgba(255,255,255,0.3);border:1px solid rgba(0,0,0,0.12)}
@@ -314,6 +316,9 @@
                     </div>
                     <div id="swap-result" class="swap-result">1 SOL ≈ 1000 DEGA (simulação)</div>
                     <div class="swap-note">Taxa fictícia para demonstração: 1 SOL = 1000 DEGA. Ajuste no código quando a pool estiver ativa.</div>
+                </div>
+                <div class="chart-card" aria-label="Gráfico de preço em tempo real">
+                    <iframe class="chart-embed" src="https://www.geckoterminal.com/solana/pools/CkUJhaHK1XPRRoqY68CTryq8JKSgDwoBHKh2sQQbvfS1?embed=1&info=0" loading="lazy" title="Gráfico DEGA"></iframe>
                 </div>
             </div>
         </div>
